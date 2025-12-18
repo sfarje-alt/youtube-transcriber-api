@@ -37,7 +37,7 @@ def transcribe():
 # En ydl_opts, agregar:
             ydl_opts = {
                 'format': 'bestaudio/best',
-                'outtmpl': output_path,
+                'outtmpl': output_template,
                 'quiet': True,
                 'no_warnings': True,
                 'cookiefile': 'cookies.txt',  # <-- Agregar esta línea
