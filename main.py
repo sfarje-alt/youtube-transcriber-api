@@ -34,13 +34,20 @@ def transcribe():
         with tempfile.TemporaryDirectory() as tmpdir:
             output_template = os.path.join(tmpdir, '%(id)s.%(ext)s')
             
+# En ydl_opts, agregar:
             ydl_opts = {
-                'format': 'm4a/bestaudio/best',
-                'outtmpl': output_template,
+                'format': 'bestaudio/best',
+                'outtmpl': output_path,
                 'quiet': True,
                 'no_warnings': True,
-                'extract_flat': False,
+                'cookiefile': 'cookies.txt',  # <-- Agregar esta línea
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3',
+                    'preferredquality': '64',
+                }]
             }
+
             
             logger.info(f"Downloading audio from YouTube...")
             
